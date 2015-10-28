@@ -87,9 +87,9 @@ void main()
 		}
 	}
   /* If all integers appear just once in the data set, there is no mode. */
-	if (max_count == 1)
-		mode = 0;
+  if (max_count == 1)
+    mode = 0;
 
   /* Print the results to the standard output. */
-	cout<<"Mean = "<<mean<<", Median = "<<median<<", Mode = "<<mode<<endl;
+  cout<<"Mean = "<<mean<<", Median = "<<median<<", Mode = "<<mode<<endl;
 }
