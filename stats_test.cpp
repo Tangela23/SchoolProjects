@@ -16,14 +16,14 @@ void main()
 {
   int i, j, k;
   int mode, max_count;
-	float mean, median, count = 0;
+  float mean, median, count = 0;
   /* Total number of elements in the data set. */
-	int n;
+  int n;
   /* Data set. */
   int data_set[MAX_N];
 
   /* Get the user input. */
-	cout<<"Total number of elements (max is "<<MAX_N<<"): ";
+  cout<<"Total number of elements (max is "<<MAX_N<<"): ";
 	cin>>n;
   n = (n <= MAX_N) ? n : MAX_N;
   
