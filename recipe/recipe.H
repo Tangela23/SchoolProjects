@@ -7,8 +7,12 @@
     ingredients and cooking instructions.
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
+
+using std::cout;
+using std::endl;
+using std::cin;
 
 /* Maximum length of a recipe or ingredient Name */
 #define RECIPE_NAMELEN 40
@@ -25,147 +29,147 @@ class Recipe
       Recipe
       Constructor
     */
-  	Recipe();
+    Recipe();
     
     /*
       GetNumber
       Gets the recipe number.
     */
-	  int GetNumber();
+    int GetNumber();
     
     /*
       GetName
       Gets the recipe name.
     */
-	  char *GetName();
+    char *GetName();
     
     /*
       Set
       Initializes this object with the given parameters.
     */
-	  void Set(const int _number, 
+    void Set(const int _number, 
              const char *_name, 
-             char **_ingredients, 
+             char _ingredients[RECIPE_INGR_MAXCNT][RECIPE_NAMELEN], 
              const int _amounts[RECIPE_INGR_MAXCNT], 
-             const char *_instructions)
+             const char *_instructions);
     
     /*
       Operator '==' overloading to compare two Recipe objects.
     */
-	  int operator==(Recipe&);
+    int operator==(Recipe&);
     
     /*
       ask
       Friend function to get the recipe number and name from console.
     */
-	  friend void ask(Recipe&);
+    friend void ask(Recipe&);
     
     /*
       PrintShort
       Prints the recipe number and name to the standard output.
     */
-	  void PrintShort();
+    void PrintShort();
     
     /*
       Print
       Prints the complete recipe ingredients and instructions to the
       standard output.
     */
-	  void Print();
+    void Print();
     
     /*
       Clear
       Zero out all of this object's parameters.
     */
-	  void Clear();
+    void Clear();
 
   private:
     /* Recipe number. */
-  	int  Number;
+    int  Number;
     /* Recipe name. */
-  	char Name[RECIPE_NAMELEN];
+    char Name[RECIPE_NAMELEN];
     /* Preparation instructions. */
-  	char Instructions[RECIPE_INSTRLEN];
+    char Instructions[RECIPE_INSTRLEN];
     /* List of ingredient names. */
-	  char Ingredients[RECIPE_INGR_MAXCNT][RECIPE_NAMELEN];
+    char Ingredients[RECIPE_INGR_MAXCNT][RECIPE_NAMELEN];
     /* Amount per ingredient. */
-	  int  Amounts[RECIPE_INGR_MAXCNT];
+    int  Amounts[RECIPE_INGR_MAXCNT];
 };
 
 Recipe::Recipe()
 {
-	int i;
+  int i;
 
-	Number = 0;
-	strcpy(Name, "");
-	strcpy(Instructions, "");
+  Number = 0;
+  strcpy(Name, "");
+  strcpy(Instructions, "");
 
-	for (i = 0; i < RECIPE_INGR_MAXCNT; i++)
-	{
-		strcpy(Ingredients[i], "");
-		Amounts[i] = 0;
-	}
+  for (i = 0; i < RECIPE_INGR_MAXCNT; i++)
+  {
+    strcpy(Ingredients[i], "");
+    Amounts[i] = 0;
+  }
 }
 
 int Recipe::GetNumber()
 {
-	return Number;
+  return Number;
 }
 
 char *Recipe::GetName()
 {
-	return Name;
+  return Name;
 }
 
 void Recipe::Set(const int _number, 
                  const char *_name, 
-                 char **_ingredients, 
+                 char _ingredients[RECIPE_INGR_MAXCNT][RECIPE_NAMELEN], 
                  const int _amounts[RECIPE_INGR_MAXCNT], 
                  const char *_instructions)
 {
-	int i;
+  int i;
 
-	Number = _number;
-	strcpy(Name, _name);
-	strcpy(Instructions, _instructions);
+  Number = _number;
+  strcpy(Name, _name);
+  strcpy(Instructions, _instructions);
 
-	for (i = 0; i < RECIPE_INGR_MAXCNT; i++)
-	{
-		strcpy(Ingredients[i], _ingredients[i]);
-		Amounts[i] = _amounts[i];
-	}
+  for (i = 0; i < RECIPE_INGR_MAXCNT; i++)
+  {
+    strcpy(Ingredients[i], _ingredients[i]);
+    Amounts[i] = _amounts[i];
+  }
 }
 
 int Recipe::operator==(Recipe&x)
 {
-	if (x.Number == Number && !strcmp(x.Name, Name))
-		return 1;
-	else
-		return 0;
+  if (x.Number == Number && !strcmp(x.Name, Name))
+    return 1;
+  else
+    return 0;
 }
 
 void ask(Recipe&x)
 {
-	cout<<"Enter the recipe number:"<<endl;
-	cin>>x.Number;
-	cout<<"Enter the recipe name:"<<endl;
-	cin>>x.Name;
+  cout<<"Enter the recipe number:"<<endl;
+  cin>>x.Number;
+  cout<<"Enter the recipe name:"<<endl;
+  cin>>x.Name;
 }
 
 void Recipe::PrintShort()
 {
-	int i;
+  int i;
   
   if (Number == 0)
     /* Empty recipe, skip. */
     return;
 
-	cout<<endl<<"RECIPE #"<<Number<<" \t\""<<Name<<"\""<<endl<<endl;
+  cout<<endl<<"RECIPE #"<<Number<<" \t\""<<Name<<"\""<<endl<<endl;
 }
 
 void Recipe::Print()
 {
-	int i;
+  int i;
   
   if (Number == 0)
     /* Empty recipe, skip. */
@@ -182,12 +186,12 @@ void Recipe::Print()
     }
   }
 
-	cout<<endl<<"Preparation: "<<endl<<Instructions<<endl;
+  cout<<endl<<"Preparation: "<<endl<<Instructions<<endl;
 }
 
 void Recipe::Clear()
 {
-	Recipe();
+  Recipe();
 }
 
 
