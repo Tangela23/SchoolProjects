@@ -6,25 +6,22 @@
     Node class definition. Node for a singly-linked list.
 */
 
-#include <iostream.h>
-#include <string.h>
-
 class Node
 {
-	public:
+  public:
     /*
       Node
       In-line constructor
     */
-		Node(Node *_next, int _value) : next(_next), value(_value) {};
+    Node(Node *_next, int _value) : next(_next), value(_value) {};
     /*
       Node
       Constructor
     */
-		Node();
-    
-		Node *next;
-		int   value;
+    Node();
+
+    Node *next;
+    int   value;
 };
 
 Node::Node()

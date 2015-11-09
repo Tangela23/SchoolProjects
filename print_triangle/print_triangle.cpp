@@ -1,21 +1,27 @@
 /*
   print_triangle.cpp
-  Programming exercises. C++
+  Programming exercise. C++
   Print an isosceles triangle to the standard output.
 */
 
-#include "iostream.h"
+#include <iostream>
 
-void main ()
+using std::cout;
+
+int main(void)
 {
-	int rows = 5, row, i, j;
+#define TRIANGLE_HEIGHT 7
 
-	for (row = 1; row <= rows; row++)
-	{
-		for (i = (rows - row); i > 0; i--)
-			cout<<" ";
-		for (j = 1; j < (2 * row); j++)
-			cout<<"*";
-		cout<<endl;
-	}
+  int row, i;
+
+  for (row = 1; row <= TRIANGLE_HEIGHT; row++)
+  {
+    for (i = (TRIANGLE_HEIGHT - row); i > 0; i--)
+      cout<<" ";
+    for (i = 1; i < (2 * row); i++)
+      cout<<"*";
+    cout<<"\n";
+  }
+
+  return 0;
 }

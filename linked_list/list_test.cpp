@@ -6,28 +6,31 @@
     Program to test the singly-linked list class.
 */
 
-#include <iostream.h>
-#include <string.h>
+#include <iostream>
 #include "list.h"
 
-void main(){
-	List mylist;
+using std::cout;
+using std::endl;
 
-	mylist.Pop();
-	mylist.Push(5);
-	mylist.Push(3);
-	mylist.Push(8);
-	mylist.Push(2);
-	mylist.Push(7);
-	mylist.Push(1);
-	mylist.Pop();
+int main(void)
+{
+  List mylist;
 
-	mylist.Print();
+  mylist.Pop();
+  mylist.Push(5);
+  mylist.Push(3);
+  mylist.Push(8);
+  mylist.Push(2);
+  mylist.Push(7);
+  mylist.Push(1);
+  mylist.Pop();
 
-	mylist.BubbleSort();
+  mylist.Print();
+
+  mylist.BubbleSort();
 
   cout<<"Sorted list: "<<endl;
-	mylist.Print();
+  mylist.Print();
 
-	getchar();
+  return 0;
 }

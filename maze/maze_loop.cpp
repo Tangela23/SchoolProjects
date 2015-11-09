@@ -11,9 +11,10 @@
     Jorge
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
 #include <stack>
+
 using namespace std;
 
 #define MAZE_ROAD    0
@@ -78,77 +79,79 @@ void PrintStack();
 */
 void Move();
 
-void main(){
+int main(void){
 
-	PrintMaze();
+  PrintMaze();
 
   /* While the current position is not the maze exit. */
-	while( maze[ y ][ x ] != MAZE_EXIT ){
+  while( maze[ y ][ x ] != MAZE_EXIT ){
     Move();
-	}
+  }
 
-	PrintStack();
-	PrintMaze();
+  PrintStack();
+  PrintMaze();
+
+  return 0;
 }
 
 void Move(){
-
-  /* Get the direction in which the cursor can move. */
-  switch( NextStep() ){
-	
-	case 0:	
-    /* The cursor cannot move any further, go back one step. */
-	  GoBack();
-		break;
-	case '>':
-    /* The current position is part of the path to the maze exit. */
-		maze[ y ][ x ] = MAZE_PATH;
-    /* Move right. */
-		x ++;
-    /* Push this movement into the stack. */
-		mystack.push('>');
-		break;
-	case '<':
-		maze[ y ][ x ] = MAZE_PATH;
-    /* Move left. */
-		x --;
-		mystack.push('<');
-		break;
-	case 'v':
-		maze[ y ][ x ] = MAZE_PATH;
-    /* Move down. */
-		y ++;
-		mystack.push('v');
-		break;
-	case '^':
-		maze[ y ][ x ] = MAZE_PATH;
-    /* Move up. */
-		y --;
-		mystack.push('^');
-		break;
-	}
+  if ( maze[ y ][ x ] != MAZE_EXIT ){
+    /* Get the direction in which the cursor can move. */
+    switch( NextStep() ){
+    case 0:	
+      /* The cursor cannot move any further, go back one step. */
+      GoBack();
+      break;
+    case '>':
+      /* The current position is part of the path to the maze exit. */
+      maze[ y ][ x ] = MAZE_PATH;
+      /* Move right. */
+      x ++;
+      /* Push this movement into the stack. */
+      mystack.push('>');
+      break;
+    case '<':
+      maze[ y ][ x ] = MAZE_PATH;
+      /* Move left. */
+      x --;
+      mystack.push('<');
+      break;
+    case 'v':
+      maze[ y ][ x ] = MAZE_PATH;
+      /* Move down. */
+      y ++;
+      mystack.push('v');
+      break;
+    case '^':
+      maze[ y ][ x ] = MAZE_PATH;
+      /* Move up. */
+      y --;
+      mystack.push('^');
+      break;
+    }
+    Move();
+  }
 }
 
 char NextStep(){
-
   /* Check for the maze boundaries. */
-	if( x < (MAZESIZE_X - 1) )
-		if( (maze[ y ][ x + 1 ] == MAZE_ROAD) ||
+	if ( x < (MAZESIZE_X - 1) )
+		if ( (maze[ y ][ x + 1 ] == MAZE_ROAD) ||
         (maze[ y ][ x + 1 ] == MAZE_EXIT) )
       return '>';	/* Go right */
 
-	if( x > 0 )
-		if( (maze[ y ][ x - 1 ] == MAZE_ROAD) ||
+	if ( x > 0 )
+		if ( (maze[ y ][ x - 1 ] == MAZE_ROAD) ||
         (maze[ y ][ x - 1 ] == MAZE_EXIT) )
       return '<';	/* Go left */
 
-	if( y < (MAZESIZE_Y - 1) )
-		if( (maze[ y + 1 ][ x ] == MAZE_ROAD) ||
+	if ( y < (MAZESIZE_Y - 1) )
+		if ( (maze[ y + 1 ][ x ] == MAZE_ROAD) ||
         (maze[ y + 1 ][ x ] == MAZE_EXIT) )
       return 'v';	// Go Down
 
-	if( y > 0 )
-		if( (maze[ y - 1 ][ x ] == MAZE_ROAD) ||
+	if ( y > 0 )
+		if ( (maze[ y - 1 ][ x ] == MAZE_ROAD) ||
         (maze[ y - 1 ][ x ] == MAZE_EXIT) )
       return '^';	// Go Up
 
@@ -158,58 +161,59 @@ char NextStep(){
 
 void GoBack(){
 
-	if(mystack.empty()){
+  if (mystack.empty()){
     /* The stack is empty and we are trying to go back. This means
-       there is no solution to this maze. */
-		cout<<"No solution";
+      there is no solution to this maze. */
+    cout<<"No solution";
     /* Convert the current position into the maze exit to end the program. */
-		maze[ y ][ x ] = MAZE_EXIT;
-		return;
-	}
+    maze[ y ][ x ] = MAZE_EXIT;
+    return;
+  }
 
   /* Remember the current position lead to a dead end. */
-	maze[ y ][ x ] = MAZE_DEADEND;
+  maze[ y ][ x ] = MAZE_DEADEND;
 
   /* If the previous movement was 'right', go left.*/
-	if(mystack.top() == '>')	x --;
-	if(mystack.top() == '<')	x ++;
-	if(mystack.top() == '^')	y ++;
-	if(mystack.top() == 'v')	y --;
+  if (mystack.top() == '>')	x --;
+  if (mystack.top() == '<')	x ++;
+  if (mystack.top() == '^')	y ++;
+  if (mystack.top() == 'v')	y --;
 
   /* Pop the previous movement from the stack, as it is no
      longer part of the solution. */
-	mystack.pop();
+  mystack.pop();
 }
 
 void PrintMaze(){
 
-	cout<<endl<<endl<<"\1"<<endl;
-	for(int i = 0; i < MAZESIZE_Y; i ++){
-		for(int j = 0; j < MAZESIZE_X; j ++){
-			if( maze[i][j] == MAZE_ROAD || maze[ i ][ j ] == MAZE_DEADEND)
-				cout<<" ";
-			else if(maze[ i ][ j ] == MAZE_EXIT)
-				cout<<"!"<<"->\1";
-			else if(maze[ i ][ j ] == MAZE_PATH)
-				cout<<".";
-			else if(maze[ i ][ j ] == MAZE_WALL)
-				cout<<"#";
-		}	
-		cout<<endl;
-	}
+  cout<<endl<<endl<<"\1"<<endl;
+  for (int i = 0; i < MAZESIZE_Y; i ++){
+    for (int j = 0; j < MAZESIZE_X; j ++){
+      if (maze[i][j] == MAZE_ROAD || maze[ i ][ j ] == MAZE_DEADEND)
+        cout<<" ";
+      else if (maze[ i ][ j ] == MAZE_EXIT)
+        cout<<"!"<<"->\1";
+      else if (maze[ i ][ j ] == MAZE_PATH)
+        cout<<".";
+      else if (maze[ i ][ j ] == MAZE_WALL)
+        cout<<"#";
+    }	
+    cout<<endl;
+  }
 }
 
 void PrintStack() {
 
-	char path [ ( MAZESIZE_X * MAZESIZE_Y ) ];
-	int i = 0;
+  char path [ ( MAZESIZE_X * MAZESIZE_Y ) ];
+  int i = 0;
 
-	while( ! mystack.empty()){
-		path[ i ] = mystack.top();
-		mystack.pop();
-		i++;
-	}
-	cout<<endl<<"Path: ";
-	for( -- i  ; i >= 0; i --)
-		cout<<path[ i ]<<" ";
+  while ( ! mystack.empty()){
+    path[ i ] = mystack.top();
+    mystack.pop();
+    i++;
+  }
+  cout<<endl<<"Path: ";
+  for ( -- i  ; i >= 0; i --)
+    cout<<path[ i ]<<" ";
 }
+

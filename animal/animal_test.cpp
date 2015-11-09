@@ -7,99 +7,116 @@
     and the user may list the existing animals by type, by specie, or by name.
 */
 
-#include <iostream.h>
+#include <iostream>
 #include <string.h>
 #include "animal.H"
 
+using std::cout;
+using std::endl;
+using std::cin;
+
+/* Number of animals in the data set. */
+#define ANIMAL_COUNT 15
+
 /* Menu options. */
-#defnie ANIMAL_OPTION_TYPE   ((int)1)
+#define ANIMAL_OPTION_TYPE   ((int)1)
 #define ANIMAL_OPTION_SPECIE ((int)2)
 #define ANIMAL_OPTION_NAME   ((int)3)
 #define ANIMAL_OPTION_EXIT   ((int)4)
 
-void main()
+int main(void)
 {
-	Animal animals[15];
-	int op, type, i;
-	char specie [ANIMAL_MAXSTR];
-	char name [ANIMAL_MAXSTR];
+  Animal animals[ANIMAL_COUNT];
+  int op, type, i;
+  char specie [ANIMAL_MAXSTR];
+  char name [ANIMAL_MAXSTR];
 
   /* Initialize all animals with valid values. */
-	animals[0].Init("Lion",      "Momo",   4, 4,  "Hair",     "Meat");
-	animals[1].Init("Lion",      "Carlos", 4, 4,  "Hair",     "Meat");
-	animals[2].Init("Zebra",     "Fido",   4, 4,  "Hair",     "Grass");
-	animals[3].Init("Zebra",     "Karla",  4, 4,  "Hair",     "Grass");
-	animals[4].Init("Zebra",     "Pluto",  4, 6,  "Hair",     "Grass");
-	animals[5].Init("Bear",      "Teddy",  4, 6,  "Hair",     "Nuts");
-	animals[6].Init("Snake",     "Hugo",   0, 9,  "Scales",   "Mice");
-	animals[7].Init("Crocodile", "Coco",   4, 10, "Scales",   "Meat");
-	animals[8].Init("Crocodile", "Yoshi",  4, 4,  "Scales",   "Meat");
-	animals[9].Init("Lizard",    "Marcos", 4, 7,  "Scales",   "Bugs");
-	animals[10].Init("Lizard",   "Moki",   4, 7,  "Scales",   "Bugs");
-	animals[11].Init("Lizard",   "Lizzy",  4, 7,  "Scales",   "Bugs");
-	animals[12].Init("Parrot",   "Niko",   2, 30, "Feathers", "Seeds");
-	animals[13].Init("Parrot",   "Paco",   2, 30, "Feathers", "Papaya");
-	animals[14].Init("Ostrich",  "Mimi",   2, 14, "Feathers", "Eggs");
+  animals[0].Init((char *)"Lion", (char *)"Momo",   4, 4, (char *)"Hair", (char *)"Meat");
+  animals[1].Init((char *)"Lion", (char *)"Carlos", 4, 4, (char *)"Hair", (char *)"Meat");
+  animals[2].Init((char *)"Zebra", (char *)"Fido",   4, 4, (char *)"Hair", (char *)"Grass");
+  animals[3].Init((char *)"Zebra", (char *)"Karla",  4, 4, (char *)"Hair", (char *)"Grass");
+  animals[4].Init((char *)"Zebra", (char *)"Pluto",  4, 6, (char *)"Hair", (char *)"Grass");
+  animals[5].Init((char *)"Bear", (char *)"Teddy",  4, 6, (char *)"Hair", (char *)"Nuts");
+  animals[6].Init((char *)"Snake", (char *)"Hugo",   0, 9, (char *)"Scales", (char *)"Mice");
+  animals[7].Init((char *)"Crocodile", (char *)"Coco",   4, 10, (char *)"Scales", (char *)"Meat");
+  animals[8].Init((char *)"Crocodile", (char *)"Yoshi",  4, 4, (char *)"Scales", (char *)"Meat");
+  animals[9].Init((char *)"Lizard", (char *)"Marcos", 4, 7, (char *)"Scales", (char *)"Bugs");
+  animals[10].Init((char *)"Lizard", (char *)"Moki",   4, 7, (char *)"Scales", (char *)"Bugs");
+  animals[11].Init((char *)"Lizard", (char *)"Lizzy",  4, 7, (char *)"Scales", (char *)"Bugs");
+  animals[12].Init((char *)"Parrot", (char *)"Niko",   2, 30, (char *)"Feathers", (char *)"Seeds");
+  animals[13].Init((char *)"Parrot", (char *)"Paco",   2, 30, (char *)"Feathers", (char *)"Papaya");
+  animals[14].Init((char *)"Ostrich", (char *)"Mimi",   2, 14, (char *)"Feathers", (char *)"Eggs");
 
-	do
-	{
+  do
+  {
     /* Print the main menu and get the user input. */
-		cout<<"Welcome \n\n How will your query be?\n\n \t1.By Type \n\t2.By specie \n\t3.By name \n\t4.Exit"<<endl;
-		cin>>op;
+    cout<<"\n";
+    cout<<"Search the animal database:\n\n";
+    cout<<"1) By Type\n2) By specie\n3) By name\n4) Exit\n";
+    cout<<"Select an option: ";
+    cin>>op;
+    cout<<"\n";
 
-		switch (op)
-		{
-		case ANIMAL_OPTION_TYPE:
-			cout<<"1.Reptiles\n2.Mammals\n3.Birds\n"<<endl;
-			cin>>type;
-			switch(type)
-			{
-			case 2:
-				for (i = 0; i < 6; i++)
-					animals[i].Print();
-				break;
-			case 1:
-				for (i = 6; i < 12; i++)
-					animals[i].Print();
-				break;
-			case 3:
-				for (i = 12; i < 15;i++)
-					animals[i].Print();
-				break;
-			}
-			break;
+    switch (op)
+    {
+    case ANIMAL_OPTION_TYPE:
+      cout<<"Types of animals:\n\n";
+      cout<<"1) Reptiles\n2) Mammals\n3) Birds\n";
+      cout<<"Select an option: ";
+      cin>>type;
+      cout<<"\n";
+      switch(type)
+      {
+      case 2:
+        for (i = 0; i < 6; i++)
+          animals[i].Print();
+        break;
+      case 1:
+        for (i = 6; i < 12; i++)
+          animals[i].Print();
+        break;
+      case 3:
+        for (i = 12; i < ANIMAL_COUNT;i++)
+          animals[i].Print();
+        break;
+      }
+      break;
 
-		case ANIMAL_OPTION_SPECIE:
-			cout<<"Tell me the specie: "<<endl;
-			cin>>specie;
-			for (i = 0; i < 15; i)
-			{
-				cout<<"Specie"<<endl;
-				if (!strcmp(animals[i].GetSpecie(), specie))
-				{
-					cout<<"Animal:"<<endl;
-					animals[i].Print();
-					break;
-				}
-				else
-					i++;
-			}
-			break;
+    case ANIMAL_OPTION_SPECIE:
+      cout<<"Enter the name of the specie: ";
+      cin>>specie;
+      for (i = 0; i < ANIMAL_COUNT; i++)
+      {
+        if (!strcmp(animals[i].GetSpecie(), specie))
+        {
+          cout<<"\n";
+          animals[i].Print();
+          break;
+        }
+      }
+      if (i == ANIMAL_COUNT)
+        cout<<"No "<<specie<<"s were found in the data set.\n";
+      break;
 
-		case ANIMAL_OPTION_NAME:
-			cout<<"Tell me the name: "<<endl;
-			cin>>name;
-			for (i = 0; i < 15; i++)
-			{
-				if (!strcmp(animals[i].GetName(), name))
-				{
-					cout<<"Animal:"<<endl;
-					animals[i].Print();
-					break;
-				}
-			}
-			break;
-		}
-	}
-	while (op != ANIMAL_OPTION_EXIT);
+    case ANIMAL_OPTION_NAME:
+      cout<<"Enter the animal name: ";
+      cin>>name;
+      for (i = 0; i < ANIMAL_COUNT; i++)
+      {
+        if (!strcmp(animals[i].GetName(), name))
+        {
+          cout<<"\n";
+          animals[i].Print();
+          break;
+        }
+      }
+      if (i == ANIMAL_COUNT)
+        cout<<"No animals were found in the data set with the name '"<<name<<"'.\n";
+      break;
+    }
+  }
+  while (op != ANIMAL_OPTION_EXIT);
+
+  return 0;
 }

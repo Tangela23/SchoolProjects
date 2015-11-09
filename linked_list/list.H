@@ -6,24 +6,26 @@
     List class definition. Singly-linked list with a bubble sort routine.
 */
 
-#include <iostream.h>
-#include <string.h>
+#include <iostream>
 #include "node.H"
+
+using std::cout;
+using std::endl;
 
 class List
 {
-	public:
+  public:
     /*
       List
       Constructor
     */
-		List();
+    List();
 
     /*
       Push
       Adds a node to the Head of the list.
     */
-		void Push(int _value);
+    void Push(int _value);
 
     /*
       Pop
@@ -31,7 +33,7 @@ class List
       be added (last in, first out).
       Returns the integer value of the node removed; or zero for an empty list.
     */
-		int  Pop();
+    int  Pop();
 
     /*
       BubbleSort
@@ -42,77 +44,78 @@ class List
       values in the nodes are updated to be in order. This is not the expected
       behaviour of a linked list but for the scope of this project is fine.
     */
-		void BubbleSort();
+    void BubbleSort();
     
     /*
       Print
       Prints the content of the list.
     */
-		void Print();
+    void Print();
 
-	private:
+  private:
     /* Head of the list. */
-		Node *Head;
+    Node *Head;
 
     /* Number of nodes in the list. */
-		int   NodeCount;
+    int   NodeCount;
 };
 
 List::List()
 {
-	Head = NULL;
-	NodeCount = 0;
+  Head = NULL;
+  NodeCount = 0;
 }
 
 void List::Push(int _value)
 {
-	Node *new_node;
+  Node *new_node;
 
-	new_node = new Node;
-	new_node->next  = Head;
-	new_node->value = _value;
+  new_node = new Node;
+  new_node->next  = Head;
+  new_node->value = _value;
 
-	Head = new_node;
-	NodeCount++;
+  Head = new_node;
+  NodeCount++;
 }
 
 int List::Pop()
 {
-	int tmp_value;
+  int tmp_value;
   
   if (Head == NULL)
     return 0;
 
-	tmp_value = Head->value;
-	Head = Head->next;
+  tmp_value = Head->value;
+  Head = Head->next;
   NodeCount--;
 
-	return tmp_value;
+  return tmp_value;
 }
 
 void List::BubbleSort()
 {
-	Node *node_a;
-	Node *node_b;
-	int   tmp_value;
+  Node *node_a;
+  Node *node_b;
+  int   tmp_value;
 
-	for (node_a = Head; node_a != NULL; node_a = node_a->next)
-		for (node_b = node_a->next; node_b != NULL; node_b = node_b->next)
-			if (node_a->value > node_b->value)
-			{
-				tmp_value = node_b->value;
-				node_b->value = node_a->value;
-				node_a->value = tmp_value;
-			}
+  for (node_a = Head; node_a != NULL; node_a = node_a->next)
+    for (node_b = node_a->next; node_b != NULL; node_b = node_b->next)
+      if (node_a->value > node_b->value)
+      {
+        tmp_value = node_b->value;
+        node_b->value = node_a->value;
+        node_a->value = tmp_value;
+      }
 }
 
 void List::Print()
 {
-	Node *curr;
+  Node *curr;
   int   i = 0;
 
   cout<<"Linked list:"<<endl;
-	for(curr = Head; curr != NULL; curr = curr->next){
-		cout<<"Node["<<(i++)<<"] = "<<curr->value<<endl;
-	}
+  for(curr = Head; curr != NULL; curr = curr->next){
+    cout<<"Node["<<(i++)<<"] = "<<curr->value<<endl;
+  }
 }
+
