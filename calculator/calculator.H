@@ -27,7 +27,7 @@ class Calculator
     double GeneralX1(double, double, double);
     double GeneralX2(double, double, double);
 
-  private
+  private:
     double pi;
 };
 
@@ -38,67 +38,67 @@ Calculator::Calculator()
 
 double Calculator::Sum(const double a, const double b)
 {
-	return(a + b);
+  return(a + b);
 }
 
 double Calculator::Subtraction(const double a, const double b)
 {
-	return(a - b);
+  return(a - b);
 }
 
 double Calculator::Multiplication(const double a, const double b)
 {
-	return(a * b);
+  return(a * b);
 }
 
 double Calculator::Division(const double a, const double b)
 {
-	return(a / b);
+  return(a / b);
 }
 
 double Calculator::Percentage(const double a, const double b)
 {
-	return(a * (b / 100));
+  return(a * (b / 100));
 }
 
 double Calculator::Power(const double a, const double b)
 {
-	return(pow(a, b));
+  return(pow(a, b));
 }
 
 double Calculator::SquaredRoot(const double a)
 {
-	return(sqrt(a));
+  return(sqrt(a));
 }
 
 double Calculator::Sine(const double a)
 {
-	return(sin((a * pi) / 180));
+  return(sin((a * pi) / 180));
 }
 
 double Calculator::Cosine(const double a)
 {
-	return(cos((a * pi) / 180));
+  return(cos((a * pi) / 180));
 }
 
 double Calculator::Tangent(const double a)
 {
-	return(tan((a * pi) / 180));
+  return(tan((a * pi) / 180));
 }
 
 double Calculator::InverseSine(const double a)
 {
-	return((asin(a) * 180) / pi);
+  return((asin(a) * 180) / pi);
 }
 
 double Calculator::InverseCosine(const double a)
 {
-	return((acos(a) * 180) / pi);
+  return((acos(a) * 180) / pi);
 }
 
 double Calculator::InverseTangent(const double a)
 {
-	return((atan(a) * 180) / pi);
+  return((atan(a) * 180) / pi);
 }
 
 long Calculator::Factorial(const long a)
@@ -106,40 +106,40 @@ long Calculator::Factorial(const long a)
   long factor = 1;
   long i;
 
-	for (i = 0; i < a; i++)
+  for (i = 0; i < a; i++)
     factor = factor * (i + 1);
 
-	return(factor);
+  return(factor);
 }
 
 double Calculator::GeneralX1(const double a, const double b, const double c)
 {
   double x1;
-	double d = pow(b, 2) - (4 * a * c);
+  double d = pow(b, 2) - (4 * a * c);
 
-	if (d < 0)
-	{
-		d = d * (-1);
-		x1 = (b * -1) / (2 * a);
-	}
-	else
-		x1 = ((b * -1) + sqrt(d)) / (2 * a);
+  if (d < 0)
+  {
+    d = d * (-1);
+    x1 = (b * -1) / (2 * a);
+  }
+  else
+    x1 = ((b * -1) + sqrt(d)) / (2 * a);
 
-	return(x1);
+  return(x1);
 }
 
 double Calculator::GeneralX2(const double a, const double b, const double c)
 {
   double x2;
-	double d = pow(b, 2) - (4 * a * c);
+  double d = pow(b, 2) - (4 * a * c);
 
-	if (d < 0)
-	{
-		d = d * (-1);
-		x2 = sqrt(d) / (2 * a);
-	}
-	else
-		x2 = ((b * -1) - sqrt(d)) / (2 * a);
+  if (d < 0)
+  {
+    d = d * (-1);
+    x2 = sqrt(d) / (2 * a);
+  }
+  else
+    x2 = ((b * -1) - sqrt(d)) / (2 * a);
 
-	return(x2);
+  return(x2);
 }

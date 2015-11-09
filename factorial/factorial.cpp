@@ -6,25 +6,29 @@
     Simple program that calculates the factorial of an integer.
 */
 
-#include "iostream.h"
-#include "stdlib.h"
+#include <iostream>
+
+using std::cout;
+using std::cin;
 
 float Factorial(const int);
 
-void main()
+int main(void)
 {
-	int n;
+  int n;
 
-	cout<<"Calculate factorial of n=";
-	cin>>n;
+  cout<<"Calculate factorial of n: ";
+  cin>>n;
 
-	cout<<endl<<n<<"! ="<<Factorial(n)<<endl;
+  cout<<"\n"<<n<<"! = "<<Factorial(n)<<"\n";
+
+  return 0;
 }
 
 float Factorial(const int n)
 {
-	if (n <= 0)
-		return 1;
+  if (n <= 0)
+    return 1;
 
-	return n * Factorial(n - 1);
+  return n * Factorial(n - 1);
 }
