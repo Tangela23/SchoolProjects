@@ -1,7 +1,10 @@
 /*
   print_triangle.cpp
-  Programming exercise. C++
-  Print an isosceles triangle to the standard output.
+
+  Description:
+    Programming exercise. C++
+
+    Prints an isosceles triangle to the standard output.
 */
 
 #include <iostream>
