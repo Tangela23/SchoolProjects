@@ -2,7 +2,8 @@
   student.H
 
   Description:
-    School project. C++
+    Programming exercise. C++
+
     Student class definition. Describes the student grades throughout the
     course period and calculates the student's final grades as follows:
     

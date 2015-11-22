@@ -3,12 +3,13 @@
 
   Description:
     Programming exercise. C++
-    Displays the user a set of 10 random multiple-choice questions about cats,
-    if the user can answer the question correctly it gets 1 point. At the end
-    it shows the final score.
-    The entire set of questions are written to a file and then 10 random
-    questions are read from the file to present them to the user. This exercise
-    demonstrates how to open/close/read/write files using the FILE data type.
+
+    Demonstrates the use of fopen, fclose, fread, fwrite, and fseek to read and
+    write to external files.
+
+    Writes a set of questions and answers to a temporary file and then reads 10
+    random questions to display them to the user as a trivia. At the end it
+    shows the final score.
 */
 
 #include "stdio.h"
